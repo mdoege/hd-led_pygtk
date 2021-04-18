@@ -4,7 +4,7 @@ fn = "/sys/block/sda/stat"
 ro, wo = 0, 0
 last = ""
 
-import gi, time
+import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GObject
 from gi.repository import Gtk
@@ -14,8 +14,7 @@ tray.set_visible(True)
 def update():
 	global ro, wo, last
 
-	f = open(fn).read()
-	f = f.split()
+	f = open(fn).read().split()
 	r, w = f[0], f[4]
 	rr, ww = "0", "0"
 	if r != ro:
