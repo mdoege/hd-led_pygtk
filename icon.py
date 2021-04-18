@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 fn = "/sys/block/sda/stat"
+UPDATE = 100	# update interval in ms
 ro, wo = 0, 0
 last = ""
 
@@ -27,8 +28,8 @@ def update():
 		tray.set_from_file(i)
 		tray.set_visible(True)
 		last = i
-	GObject.timeout_add(100, update)
+	GObject.timeout_add(UPDATE, update)
 
-GObject.timeout_add(100, update)
+update()
 Gtk.main()
 
